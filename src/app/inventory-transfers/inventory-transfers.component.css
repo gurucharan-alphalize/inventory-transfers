@@ -1,0 +1,13 @@
+.container {
+  max-width: 900px;
+  margin: auto;
+  padding: 15px;
+}
+.btn {
+  cursor: pointer;
+  margin-right: 5px;
+}
+.table {
+  width: 100%;
+  margin-top: 20px;
+}

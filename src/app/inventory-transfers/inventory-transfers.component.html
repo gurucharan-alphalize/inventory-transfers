@@ -1,0 +1,68 @@
+<div class="container">
+  <h2>Inventory Transfers</h2>
+  <button (click)="startCreate()" class="btn btn-primary mb-3">Add Transfer</button>
+  <form [formGroup]="form" (ngSubmit)="save()" *ngIf="form">
+    <div class="mb-3">
+      <label for="fromLocation" class="form-label">From Location</label>
+      <input type="text" id="fromLocation" formControlName="fromLocation" class="form-control"/>
+    </div>
+    <div class="mb-3">
+      <label for="toLocation" class="form-label">To Location</label>
+      <input type="text" id="toLocation" formControlName="toLocation" class="form-control"/>
+    </div>
+    <div class="mb-3">
+      <label for="productId" class="form-label">Product ID</label>
+      <input type="number" id="productId" formControlName="productId" class="form-control"/>
+    </div>
+    <div class="mb-3">
+      <label for="quantity" class="form-label">Quantity</label>
+      <input type="number" id="quantity" formControlName="quantity" class="form-control"/>
+    </div>
+    <div class="mb-3">
+      <label for="transferDate" class="form-label">Transfer Date</label>
+      <input type="date" id="transferDate" formControlName="transferDate" class="form-control"/>
+    </div>
+    <div class="mb-3" *ngIf="editingTransfer">
+      <label for="status" class="form-label">Status</label>
+      <select id="status" formControlName="status" class="form-select">
+        <option>Pending</option>
+        <option>Completed</option>
+        <option>Cancelled</option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-success me-2" [disabled]="form.invalid">Save</button>
+    <button type="button" class="btn btn-secondary" (click)="cancel()">Cancel</button>
+  </form>
+  <table class="table table-striped mt-4" *ngIf="transfers.length">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>From Location</th>
+        <th>To Location</th>
+        <th>Product ID</th>
+        <th>Product Name</th>
+        <th>Quantity</th>
+        <th>Status</th>
+        <th>Transfer Date</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let transfer of transfers">
+        <td>{{transfer.id}}</td>
+        <td>{{transfer.fromLocation}}</td>
+        <td>{{transfer.toLocation}}</td>
+        <td>{{transfer.productId}}</td>
+        <td>{{transfer.productName}}</td>
+        <td>{{transfer.quantity}}</td>
+        <td>{{transfer.status}}</td>
+        <td>{{transfer.transferDate | date:'yyyy-MM-dd'}}</td>
+        <td>
+          <button class="btn btn-primary btn-sm me-2" (click)="startEdit(transfer)">Edit</button>
+          <button class="btn btn-danger btn-sm" (click)="delete(transfer)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div *ngIf="!transfers.length">No inventory transfers found</div>
+</div>

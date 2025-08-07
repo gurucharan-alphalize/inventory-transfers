@@ -1,0 +1,15 @@
+/node_modules
+/dist
+/.angular
+/*.log
+environment.prod.ts
+/*.local
+/*.backup
+/*.swp
+/.vscode
+/*.suo
+/*.ntvs
+/*.ntvs_analysis.dat
+/*.njsproj
+/*.sln
+/*.tgz
